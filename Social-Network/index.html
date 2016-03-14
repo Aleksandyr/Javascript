@@ -5,6 +5,29 @@
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/bootstrap.css" />
     <title>Social Network</title>
+
+    <!-- Libs -->
+    <script src="node_modules/jquery/dist/jquery.js" defer></script>
+    <script src="node_modules/mustache/mustache.js" defer></script>
+    <script src="node_modules/sammy/lib/sammy.js" defer></script>
+    <script src="node_modules/q/q.js" defer></script>
+
+    <!-- Helpers -->
+    <script src="scripts/helpers/ajaxRequester.js"></script>
+
+    <!-- Views -->
+    <script src="scripts/views/homeViews.js" defer></script>
+
+    <!-- Models -->
+    <script src="scripts/models/postModel.js" defer></script>
+    <script src="scripts/models/userModel.js" defer></script>
+
+    <!-- Controllers -->
+    <script src="scripts/controllers/homeController.js" defer></script>
+
+    <!-- Main -->
+    <script src="scripts/app.js" defer></script>
+
 </head>
 <body>
 
@@ -17,30 +40,15 @@
     </div>
     <!-- end of logo -->
 
-    <!-- main -->
-    <section class="main" id="main">
+    <!-- header -->
+    <header class="header" id="header"></header>
+    <!-- end of header -->
 
-        <!-- guest home -->
-        <div>
-            <h1 class="center">Welcome to <strong>Cool Story Bro</strong></h1>
-            <h4 class="center">The place where every story seems 100% <strong><em>legit</em></strong> and is brought to you by your friendly <strong><em>bro</em></strong>.</h4>
-        </div>
-        <div class="row home-buttons-container">
-            <div class="col-md-12">
-                <div class="center col-lg-6">
-                    <a href="#">
-                        <button type="button" class="btn btn-lg btn-warning home-btn">Login</button>
-                    </a>
-                </div>
-                <div class="center col-lg-6">
-                    <a href="#">
-                        <button type="button" class="btn btn-lg btn-success home-btn">Register</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- end of guest home -->
-    </section>
+    <!-- main -->
+    <div id="success-message"></div>
+    <div id="error-message"></div>
+    <section class="main" id="main"></section>
+    <!-- end of main -->
 </div>
 
 </body>

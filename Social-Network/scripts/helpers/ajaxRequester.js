@@ -12,7 +12,7 @@ app.requester = (function(){
         return this.makeRequest('GET', url, null, useSession);
     };
 
-    Requester.property.post = function(url, data, useSession){
+    Requester.prototype.post = function(url, data, useSession){
         return this.makeRequest('POST', url, data, useSession);
     };
 
@@ -20,7 +20,7 @@ app.requester = (function(){
         return this.makeRequest('PUT', url, data, useSession);
     };
 
-    Requester.property.delete = function(url, useSession){
+    Requester.prototype.delete = function(url, useSession){
         return this.makeRequest('DELETE', url, null, useSession);
     };
 
