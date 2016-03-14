@@ -1,0 +1,97 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files (x86)\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'poppy-cli' ]
+2 info using npm@2.14.12
+3 info using node@v4.2.6
+4 verbose install initial load of E:\Javascript\Social-Network\package.json
+5 verbose installManyTop reading scoped package data from E:\Javascript\Social-Network\node_modules\jquery\package.json
+6 verbose installManyTop reading scoped package data from E:\Javascript\Social-Network\node_modules\mustache\package.json
+7 verbose installManyTop reading scoped package data from E:\Javascript\Social-Network\node_modules\q\package.json
+8 verbose installManyTop reading scoped package data from E:\Javascript\Social-Network\node_modules\sammy\package.json
+9 info package.json sammy@0.7.6 No repository field.
+10 info package.json sammy@0.7.6 No license field.
+11 info package.json q@1.4.1 license should be a valid SPDX license expression
+12 verbose readDependencies loading dependencies from E:\Javascript\Social-Network\package.json
+13 silly cache add args [ 'poppy-cli', null ]
+14 verbose cache add spec poppy-cli
+15 silly cache add parsed spec Result {
+15 silly cache add   raw: 'poppy-cli',
+15 silly cache add   scope: null,
+15 silly cache add   name: 'poppy-cli',
+15 silly cache add   rawSpec: '',
+15 silly cache add   spec: 'latest',
+15 silly cache add   type: 'tag' }
+16 silly addNamed poppy-cli@latest
+17 verbose addNamed "latest" is being treated as a dist-tag for poppy-cli
+18 info addNameTag [ 'poppy-cli', 'latest' ]
+19 silly mapToRegistry name poppy-cli
+20 silly mapToRegistry using default registry
+21 silly mapToRegistry registry https://registry.npmjs.org/
+22 silly mapToRegistry uri https://registry.npmjs.org/poppy-cli
+23 verbose addNameTag registry:https://registry.npmjs.org/poppy-cli not in flight; fetching
+24 verbose request uri https://registry.npmjs.org/poppy-cli
+25 verbose request no auth needed
+26 info attempt registry request try #1 at 7:35:24 PM
+27 verbose request id 9eeb0b59bffe9f8b
+28 http request GET https://registry.npmjs.org/poppy-cli
+29 http 404 https://registry.npmjs.org/poppy-cli
+30 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+30 verbose headers   etag: '"3OVNG1FF8LATP1PNG0J023LFI"',
+30 verbose headers   'content-type': 'application/json',
+30 verbose headers   'cache-control': 'max-age=0',
+30 verbose headers   'content-length': '456',
+30 verbose headers   'accept-ranges': 'bytes',
+30 verbose headers   date: 'Mon, 14 Mar 2016 17:36:24 GMT',
+30 verbose headers   via: '1.1 varnish',
+30 verbose headers   age: '0',
+30 verbose headers   connection: 'keep-alive',
+30 verbose headers   'x-served-by': 'cache-fra1240-FRA',
+30 verbose headers   'x-cache': 'MISS',
+30 verbose headers   'x-cache-hits': '0',
+30 verbose headers   'x-timer': 'S1457976983.652800,VS0,VE756',
+30 verbose headers   vary: 'Accept' }
+31 silly get cb [ 404,
+31 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+31 silly get     etag: '"3OVNG1FF8LATP1PNG0J023LFI"',
+31 silly get     'content-type': 'application/json',
+31 silly get     'cache-control': 'max-age=0',
+31 silly get     'content-length': '456',
+31 silly get     'accept-ranges': 'bytes',
+31 silly get     date: 'Mon, 14 Mar 2016 17:36:24 GMT',
+31 silly get     via: '1.1 varnish',
+31 silly get     age: '0',
+31 silly get     connection: 'keep-alive',
+31 silly get     'x-served-by': 'cache-fra1240-FRA',
+31 silly get     'x-cache': 'MISS',
+31 silly get     'x-cache-hits': '0',
+31 silly get     'x-timer': 'S1457976983.652800,VS0,VE756',
+31 silly get     vary: 'Accept' } ]
+32 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/poppy-cli
+32 verbose stack     at makeError (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:264:12)
+32 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:242:14)
+32 verbose stack     at Request._callback (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:172:14)
+32 verbose stack     at Request.self.callback (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\request\request.js:198:22)
+32 verbose stack     at emitTwo (events.js:87:13)
+32 verbose stack     at Request.emit (events.js:172:7)
+32 verbose stack     at Request.<anonymous> (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\request\request.js:1082:10)
+32 verbose stack     at emitOne (events.js:82:20)
+32 verbose stack     at Request.emit (events.js:169:7)
+32 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\request\request.js:1009:12)
+33 verbose statusCode 404
+34 verbose pkgid poppy-cli
+35 verbose cwd E:\Javascript\Social-Network
+36 error Windows_NT 6.3.9600
+37 error argv "C:\\Program Files (x86)\\nodejs\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "poppy-cli"
+38 error node v4.2.6
+39 error npm  v2.14.12
+40 error code E404
+41 error 404 Registry returned 404 for GET on https://registry.npmjs.org/poppy-cli
+41 error 404
+41 error 404 'poppy-cli' is not in the npm registry.
+41 error 404 You should bug the author to publish it (or use the name yourself!)
+41 error 404
+41 error 404 Note that you can also install from a
+41 error 404 tarball, folder, http url, or git url.
+42 verbose exit [ 1, true ]
