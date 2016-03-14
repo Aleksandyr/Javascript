@@ -5,7 +5,7 @@ app.requester = (function(){
     function Requester(appId, appSecret){
         this.appId = appId;
         this.appSecret = appSecret;
-        this.baseUrl = 'https://bass.kenvey.com/';
+        this.baseUrl = 'https://baas.kinvey.com/';
     }
 
     Requester.prototype.get = function(url, useSession){
@@ -16,6 +16,14 @@ app.requester = (function(){
         return this.makeRequest('POST', url, data, useSession);
     };
 
+    Requester.prototype.put = function(url, data, useSession){
+        return this.makeRequest('PUT', url, data, useSession);
+    };
+
+    Requester.property.delete = function(url, useSession){
+        return this.makeRequest('DELETE', url, null, useSession);
+    };
+
     Requester.prototype.makeRequest = function(method, url, data, useSession){
         var token,
             defer = Q.defer(),
@@ -23,7 +31,7 @@ app.requester = (function(){
             options = {
                 method: method,
                 url: url,
-                sucess: function(data){
+                success: function(data){
                     defer.resolve(data);
                 },
                 error: function(error){
