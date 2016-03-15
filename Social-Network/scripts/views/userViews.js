@@ -12,7 +12,7 @@ app.userViews = (function(){
                 Sammy(function(){
                     this.trigger('login', {username: username, password: password});
                 })
-            })
+            });
         })
     }
 
@@ -63,11 +63,59 @@ app.userViews = (function(){
         }).done();
     }
 
+    function showEditProfilePage(selector, data){
+        $.get('templates/edit-profile.html', function(tmpl){
+            var outp = Mustache.render(tmpl, data);
+            $(selector).html(outp);
+            $(selector).on('click', '#upload-file-button', function() {
+                $('#picture').click();
+            });
+
+            // Reads the selected file and returns the data as a base64 encoded string
+            $(selector).on('change', '#picture', function() {
+                var file = this.files[0],
+                    reader;
+
+                if (file.type.match(/image\/.*/)) {
+                    reader = new FileReader();
+                    reader.onload = function() {
+                        //if(file.total <= 131072){
+                        $('#uploaded-picture').attr('src','imgs/beer.png');
+                        //} else{
+                        //noty.showError('#error-message', 'Image size is bigger than 128kb.');
+                        //  console.log('Image size is bigger than 128kb.');
+                        // }
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    //noty.showError('#error-message', 'Invalid image file.');
+                    console.log('Invalid image file.');
+                }
+            });
+
+            $('#edit-profile-btn').on('click', function(e){
+                var data = {
+                    username: $('#username').val(),
+                    password: $('#password').val(),
+                    name: $('#name').val(),
+                    about: $('#about').val(),
+                    gender: $('input[name=gender-radio]:checked').val(),
+                    picture: $('#uploaded-picture').attr('src')
+                };
+
+                Sammy(function(){
+                    this.trigger('editProfile', data);
+                });
+            });
+        }).done();
+    }
+
     return{
         load: function() {
             return {
                 showLoginPage: showLoginPage,
-                showRegisterPage: showRegisterPage
+                showRegisterPage: showRegisterPage,
+                showEditProfilePage: showEditProfilePage
             }
         }
     }

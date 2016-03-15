@@ -18,7 +18,7 @@ app.homeController = (function(){
             name: sessionStorage['name'],
             picture: sessionStorage['picture']
         };
-        
+
         this._viewBag.showHomePage(selector, data);
     };
 

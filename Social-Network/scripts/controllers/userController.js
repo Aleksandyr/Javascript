@@ -12,6 +12,21 @@ app.userController = (function(){
         this._viewBag.showLoginPage(selector);
     };
 
+    UserController.prototype.loadRegisterPage = function(selector){
+        this._viewBag.showRegisterPage(selector);
+    };
+
+    UserController.prototype.loadEditProfilePage = function(selector){
+        var data = {
+            username: sessionStorage.username,
+            name: sessionStorage.name,
+            about: sessionStorage.about,
+            gender: sessionStorage.gender
+        };
+
+        this._viewBag.showEditProfilePage(selector, data);
+    };
+
     UserController.prototype.login = function(data){
         this._model.login(data)
             .then(function(successData){
@@ -20,10 +35,6 @@ app.userController = (function(){
                     this.trigger('redirectUrl', {url: '#/home/'});
                 });
             }).done();
-    };
-
-    UserController.prototype.loadRegisterPage = function(selector){
-        this._viewBag.showRegisterPage(selector);
     };
 
     UserController.prototype.register = function(data){
@@ -36,6 +47,23 @@ app.userController = (function(){
             }).done();
     };
 
+    UserController.prototype.editProfile = function(data){
+        this._model.editProfile(data)
+            .then(function(successData){
+                setUserToStorage(successData);
+                Sammy(function(){
+                    this.trigger('redirectUrl', {url: '#/home/'});
+                });
+            }).done();
+    };
+
+    UserController.prototype.logout = function(){
+        clearUserFromStorage();
+        Sammy(function(){
+            this.trigger('redirectUrl', {url: '#/'});
+        });
+    };
+
     function setUserToStorage(data){
         sessionStorage['userId'] = data._id;
         sessionStorage['username'] = data.username;
@@ -43,7 +71,7 @@ app.userController = (function(){
         sessionStorage['about'] = data.about;
         sessionStorage['gender'] = data.gender;
         sessionStorage['picture'] = data.picture;
-        sessionStorage['sessionToken'] = data._kmd.authtoken;
+        sessionStorage['sessionAuth'] = data._kmd.authtoken;
     }
 
     function clearUserFromStorage(){
@@ -53,7 +81,7 @@ app.userController = (function(){
         delete sessionStorage['about'];
         delete sessionStorage['gender'];
         delete sessionStorage['picture'];
-        delete sessionStorage['sessionToken'];
+        delete sessionStorage['sessionAuth'];
     }
 
     return {

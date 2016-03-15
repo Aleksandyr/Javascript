@@ -46,7 +46,7 @@ app.requester = (function(){
                     xhr.setRequestHeader('Authorization', 'Basic ' + btoa(token));
                 } else{
                     token = sessionStorage['sessionAuth'];
-                    xhr.setRequestHeader('Authorization', 'Kinvey ' + btoa(token));
+                    xhr.setRequestHeader('Authorization', 'Kinvey ' + token);
                 }
                 if(data){
                     xhr.setRequestHeader('Content-Type', 'application/json');

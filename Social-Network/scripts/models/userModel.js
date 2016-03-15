@@ -17,8 +17,8 @@ app.userModel = (function(){
         return this._requester.post(this.serviceUrl, data);
     };
 
-    UserModel.prototype.editProfile = function(data, userId){
-        var editProfileUrl = this.serviceUrl + '/' + userId;
+    UserModel.prototype.editProfile = function(data){
+        var editProfileUrl = this.serviceUrl + '/' + sessionStorage['userId'];
         return this._requester.put(editProfileUrl, data, true);
     };
 
