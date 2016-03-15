@@ -43,10 +43,10 @@ app.requester = (function(){
             beforeSend: function(xhr, settings){
                 if(!useSession){
                     token = _this.appId + ':' + _this.appSecret;
-                    xhr.setRequestHeader('Authorization', ' Basic ' + btoa(token));
+                    xhr.setRequestHeader('Authorization', 'Basic ' + btoa(token));
                 } else{
                     token = sessionStorage['sessionAuth'];
-                    xhr.setRequestHeader('Authorization', ' Basic ' + btoa(token));
+                    xhr.setRequestHeader('Authorization', 'Kinvey ' + btoa(token));
                 }
                 if(data){
                     xhr.setRequestHeader('Content-Type', 'application/json');

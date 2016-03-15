@@ -7,26 +7,13 @@
     <title>Social Network</title>
 
     <!-- Libs -->
-    <script src="node_modules/jquery/dist/jquery.js" defer></script>
-    <script src="node_modules/mustache/mustache.js" defer></script>
-    <script src="node_modules/sammy/lib/sammy.js" defer></script>
-    <script src="node_modules/q/q.js" defer></script>
-
-    <!-- Helpers -->
-    <script src="scripts/helpers/ajaxRequester.js"></script>
-
-    <!-- Views -->
-    <script src="scripts/views/homeViews.js" defer></script>
-
-    <!-- Models -->
-    <script src="scripts/models/postModel.js" defer></script>
-    <script src="scripts/models/userModel.js" defer></script>
-
-    <!-- Controllers -->
-    <script src="scripts/controllers/homeController.js" defer></script>
-
-    <!-- Main -->
-    <script src="scripts/app.js" defer></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/mustache/mustache.js"></script>
+    <script src="node_modules/sammy/lib/sammy.js"></script>
+    <script src="node_modules/q/q.js"></script>
+    <script src="node_modules/noty/js/noty/packaged/jquery.noty.packaged.js"></script>
+    <script src="node_modules/noty/js/noty/layouts/top.js"></script>
+    <script src="node_modules/noty/js/noty/themes/default.js"></script>
 
 </head>
 <body>
@@ -50,6 +37,25 @@
     <section class="main" id="main"></section>
     <!-- end of main -->
 </div>
+
+    <!-- Helpers -->
+    <script src="scripts/helpers/ajaxRequester.js"></script>
+
+    <!-- Models -->
+    <script src="scripts/models/postModel.js"></script>
+    <script src="scripts/models/userModel.js"></script>
+    <script src="scripts/models/noty.js"></script>
+
+    <!-- Views -->
+    <script src="scripts/views/homeViews.js"></script>
+    <script src="scripts/views/userViews.js"></script>
+
+    <!-- Controllers -->
+    <script src="scripts/controllers/homeController.js"></script>
+    <script src="scripts/controllers/userController.js"></script>
+
+    <!-- Main -->
+    <script src="scripts/app.js"></script>
 
 </body>
 </html>

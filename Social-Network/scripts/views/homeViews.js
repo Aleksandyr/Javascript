@@ -3,25 +3,30 @@
 var app = app || {};
 
 app.homeViews = (function(){
-    function loadHomeView(selector){
+    function showHomePage(selector){
         $.get('templates/home.html', function(templ){
             var output = Mustache.render(templ);
             $(selector).html(output);
         })
     }
 
-    function loadGuestHomeView(selector){
+    function showGuestHomePage(selector){
         $.get('templates/guest-home.html', function(templ){
             var output = Mustache.render(templ);
             $(selector).html(output);
+            $('#login-qst-btn').on('click', function(e){
+                Sammy(function(){
+                   this.trigger('redirectUrl', {url: '#/login/'});
+                });
+            });
         })
     }
 
     return{
         load: function() {
             return {
-                loadHomeView: loadHomeView,
-                loadGuestHomeView: loadGuestHomeView
+                showHomePage: showHomePage,
+                showGuestHomePage: showGuestHomePage
             }
         }
     }

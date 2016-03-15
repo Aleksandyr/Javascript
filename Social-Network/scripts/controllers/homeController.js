@@ -9,13 +9,13 @@ app.homeController = (function(){
     }
 
     HomeController.prototype.loadGuestHomePage = function(selector){
-        this._viewBag.loadGuestHomeView(selector);
+        this._viewBag.showGuestHomePage(selector);
     };
 
     HomeController.prototype.loadHomePage = function(selector, userId){
         var data = this._model.getById(userId);
 
-        this._viewBag.loadHomeView(selector, data);
+        this._viewBag.showHomePage(selector, data);
     };
 
     return{
