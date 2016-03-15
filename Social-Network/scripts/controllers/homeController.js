@@ -12,9 +12,13 @@ app.homeController = (function(){
         this._viewBag.showGuestHomePage(selector);
     };
 
-    HomeController.prototype.loadHomePage = function(selector, userId){
-        var data = this._model.getById(userId);
-
+    HomeController.prototype.loadHomePage = function(selector){
+        var data = {
+            username: sessionStorage['username'],
+            name: sessionStorage['name'],
+            picture: sessionStorage['picture']
+        };
+        
         this._viewBag.showHomePage(selector, data);
     };
 

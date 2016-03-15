@@ -27,6 +27,11 @@ app.userModel = (function(){
         return this._requester.get(getUserByIdUrl, null, true);
     };
 
+    UserModel.prototype.getLoggedUser = function(){
+        var getLoggedUser = this.serviceUrl + '/_me';
+        return this._requester.get(getLoggedUser, null, true);
+    };
+
     UserModel.prototype.logout = function(){
         var logoutUrl = this.serviceUrl + '/_logout';
         return this._requester.post(logoutUrl, null, true);

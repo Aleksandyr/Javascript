@@ -6,7 +6,7 @@ var app = app || {};
     var router = Sammy(function(){
        var selector = '#main';
 
-        var reguester = app.requester.config('kid_-yDXfVjOJ-', 'fbeba0bfe5be43698b502a5251f7332c');
+        var reguester = app.requester.config('kid_-y1YBoPFyZ', 'af08afc6b1574f199cf0e2aed61febea');
         var noty = app.noty.load();
 
         var homeViewBag = app.homeViews.load();

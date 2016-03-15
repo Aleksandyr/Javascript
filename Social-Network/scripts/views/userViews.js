@@ -48,12 +48,12 @@ app.userViews = (function(){
 
             $('#registerButton').on('click', function(e){
                 var data = {
-                    regUsername: $('#reg-username').val(),
-                    regPassword: $('#reg-password').val(),
-                    regName: $('#reg-name').val(),
-                    regAbout: $('#reg-about').val(),
-                    regGender: $('input[name=gender-radio]:checked').val(),
-                    regPicture: $('#uploaded-picture').attr('src')
+                    username: $('#reg-username').val(),
+                    password: $('#reg-password').val(),
+                    name: $('#reg-name').val(),
+                    about: $('#reg-about').val(),
+                    gender: $('input[name=gender-radio]:checked').val(),
+                    picture: $('#uploaded-picture').attr('src')
                 };
 
                 Sammy(function(){

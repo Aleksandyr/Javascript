@@ -3,9 +3,9 @@
 var app = app || {};
 
 app.homeViews = (function(){
-    function showHomePage(selector){
+    function showHomePage(selector, data){
         $.get('templates/home.html', function(templ){
-            var output = Mustache.render(templ);
+            var output = Mustache.render(templ, data);
             $(selector).html(output);
         })
     }
