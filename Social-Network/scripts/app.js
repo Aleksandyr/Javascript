@@ -11,11 +11,14 @@ var app = app || {};
 
         var homeViewBag = app.homeViews.load();
         var userViewBag = app.userViews.load();
+        var postViewBag = app.postViews.load();
 
         var userModel = app.userModel.load(reguester);
+        var postModel = app.postModel.load(reguester);
 
         var homeController = app.homeController.load(userModel, homeViewBag);
         var userController = app.userController.load(userModel, userViewBag);
+        var postController = app.postController.load(postModel, postViewBag);
 
         this.before(function(){
             var sessionAuth = sessionStorage['sessionAuth'];
@@ -69,8 +72,10 @@ var app = app || {};
         this.get('#/home/', function(){
             $('#main').html('');
             homeController.loadHomePage('#header');
+            postController.loadAllPosts(selector);
         });
 
+        //triggers
         this.get('#/login/', function(){
             userController.loadLoginPage(selector);
         });
@@ -95,6 +100,10 @@ var app = app || {};
 
         this.bind('register', function(e, data){
             userController.register(data);
+        });
+
+        this.bind('post', function(e, data){
+            postController.post(data.content);
         });
 
         this.bind('editProfile', function(e, data){
