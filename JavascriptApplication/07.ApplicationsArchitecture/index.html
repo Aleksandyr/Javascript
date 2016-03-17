@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books service</title>
+	<link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/bootstrap.css" />
+    
+	<!-- Libs -->
+	<script src="node_modules/jquery/dist/jquery.js"></script>
+	<script src="node_modules/mustache/mustache.js"></script>
+	<script src="node_modules/q/q.js"></script>
+	<script src="node_modules/sammy/lib/sammy.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header"></div>
+
+		<section class="main" id="main"></section>
+
+		<button id="bookButton" type="button">Book</button>
+	</div>
+
+	<!-- Helpers -->
+	<script src="scripts/helpers/requester.js"></script>
+
+	<!-- Models -->
+	<script src="scripts/models/bookModel.js"></script>
+
+	<!-- Views -->
+	<script src="scripts/views/bookViews.js"></script>
+
+	<!-- Controllers -->
+	<script src="scripts/controllers/bookController.js"></script>
+
+	<!-- Main -->
+	<script src="scripts/app.js"></script>
+</body>
+</html>

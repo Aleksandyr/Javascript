@@ -1,0 +1,43 @@
+body {
+    font-family: Calibri;
+    font-size: 18px !important;
+    background-image: url('../imgs/bg-pattern.jpg');
+}
+
+.header {
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.header {
+    background-position: center center;
+}
+
+.books-content {
+    padding: 0 1%;
+}
+
+.register, .login {
+    padding-top: 3% !important;
+}
+
+.login {
+    margin: 0 auto !important;
+    float: none !important;
+}
+
+.main {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.book-container {
+    /* display: none; */
+    width: 50%;
+    margin: 0 auto !important;
+}
+
+#bookButton{
+     margin-left: 20%;
+}
