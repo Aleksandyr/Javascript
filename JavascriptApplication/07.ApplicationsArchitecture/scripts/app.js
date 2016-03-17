@@ -15,15 +15,48 @@ var app = app || {};
 		var bookController = app.bookController.load(bookModel, bookViewBag);
 
 		this.get('#/', function(){
-			$('#main').html('');
 			bookController.loadAllBooks(selector);
+		});
+
+		this.get('#/addBook/', function(){
+			bookController.loadAddBook(selector);
+		});
+
+		this.get('#/editBook/', function(){
+			bookController.loadEditBook(selector);
 		});
 
 
 		//triggers
-		this.bind('book', function(e, data){
+
+		this.bind('redirectUrl', function(e, data){
+            this.redirect(data.url);
+        });
+
+		this.bind('addBook', function(e, data){
 			bookController.addBook(data);
+			$('#main').html('');
+			Sammy(function(){
+				this.trigger('redirectUrl', {url: '#/'})
+			});
 		});
+
+
+		this.bind('removeBook', function(e, data){
+			bookController.deleteBook(data);
+			$('#main').html('');
+			Sammy(function(){
+				this.trigger('redirectUrl', {url: '#/'})
+			});
+		});
+
+		this.bind('editBook', function(e, data){
+            bookController.editBook(data);
+            $('#main').html('');
+			Sammy(function(){
+				this.trigger('redirectUrl', {url: '#/'})
+			});
+        });
 	});
 
 	router.run('#/')

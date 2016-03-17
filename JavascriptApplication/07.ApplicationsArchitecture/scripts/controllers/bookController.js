@@ -25,8 +25,38 @@ app.bookController = (function(){
 			});
 	};
 
+	BookController.prototype.loadAddBook = function(selector) {
+		var _this = this;
+
+		_this._viewBag.showCreateBookPage(selector);
+	};
+
+	BookController.prototype.loadEditBook = function(selector) {
+		var _this = this;
+
+		_this._viewBag.showEditBookPage(selector);
+	};
+
 	BookController.prototype.addBook = function(data) {
 		this._model.addNewBook(data)
+			.then(function (successData) {
+				Sammy(function(){
+					this.trigger('redirectUrl', {url: '#/'});
+				});
+			}).done();
+	};
+
+	BookController.prototype.editBook = function(data) {
+		this._model.editBook(data)
+			.then(function (successData) {
+				Sammy(function(){
+					this.trigger('redirectUrl', {url: '#/'});
+				});
+			}).done();
+	};
+
+	BookController.prototype.deleteBook = function(data) {
+		this._model.deleteBook(data)
 			.then(function (successData) {
 				Sammy(function(){
 					this.trigger('redirectUrl', {url: '#/'});

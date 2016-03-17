@@ -1,0 +1,18 @@
+{{#books}}
+<article class="book well" id="{{bookId}}">
+    <header class="book-header">
+        <div class="book-info">
+            <p>Title: {{title}}</p>
+            <p>Author: {{author}}</p>
+            <p>Isbn: {{isbn}}</p>
+        </div>
+        <button id="edit-btn">Edit</button>
+        <button id="delete-btn">Delete</button>
+    </header>
+</article>
+{{/books}}
+{{^books}}
+<article class="post well">
+    <h2>No books found!</h2>
+</article>
+{{/books}}

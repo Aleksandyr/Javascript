@@ -16,6 +16,16 @@ app.bookModel = (function(){
 		return this._requester.post(this.serviceUrl, data);
 	};
 
+	BookModel.prototype.deleteBook = function(data){
+		var deleteBookUrl = this.serviceUrl + '/' + data.bookId;
+		return this._requester.delete(deleteBookUrl);
+	};
+
+	BookModel.prototype.editBook = function(data){
+		var editBookUrl = this.serviceUrl + '/' + data.bookId;
+		return this._requester.put(editBookUrl, data);
+	};
+
 	return{
 		load: function(requester){
 			return new BookModel(requester);
