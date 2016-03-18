@@ -9,26 +9,36 @@ var app = app || {};
 		
 		var userModel = app.userModel.load(requester);
 
-		var userViewBag = app.userViews.load();	
+		var userViewBag = app.userViews.load();
+		var homeViewBag = app.homeViews.load();	
 		
 		var userController = app.userController.load(userViewBag, userModel);
+		var homeController = app.homeController.load(homeViewBag);
 
 		// Before
+		this.before({except:{path:'#\/(login\/|register\/)?'}}, function() {
+            if(!sessionStorage['sessionId']) {
+                this.redirect('#/');
+                return false;
+            }
+        });
+
 		this.before(function(){
 			if(!sessionStorage['sessionId']){
 				$('#menu').hide();
 			} else{
+				$('#welcomeMenu').text('Welcome, ' + sessionStorage['username']);
 				$('#menu').show();
 			}
 		})
 
 		// Routing
 		this.get('#/', function(){
-
+			homeController.loadWelcomePage(selector);
 		});
 
 		this.get('#/home/', function(){
-
+			homeController.loadHomePage(selector);
 		});
 
 		this.get('#/login/', function(){

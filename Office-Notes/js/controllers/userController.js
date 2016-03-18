@@ -40,8 +40,15 @@ app.userController = (function(){
 			}).done();
 	};
 
-	UserController.prototype.logout = function(data) {
-		sessionStorage.clear();
+	UserController.prototype.logout = function() {
+		this._userModel.logout()
+			.then(function(){
+				sessionStorage.clear();
+
+				Sammy(function(){
+					this.trigger('redirectUrl', {url: '#/'})
+				});
+			}).done();
 	};
 
 	function setSessionStorage(data){
