@@ -17,11 +17,27 @@ app.userController = (function(){
 			.then(function(successData){
 				setSessionStorage.call(this, successData);
 
+				noty({
+                        theme: 'relax',
+                        text: 'Successfully logged in!',
+                        type:'success',
+                        timeout: 2000,
+                        closeWith: ['click']
+                    });
+
 				Sammy(function(){
 					this.trigger('redirectUrl', {url: '#/home/'})
 				});
 
-			}).done();
+			}, function(error) {
+                    noty({
+                        theme: 'relax',
+                        text: error.responseText,
+                        type:'error',
+                        timeout: 2000,
+                        closeWith: ['click']
+                    });
+        });
 	};
 
 	UserController.prototype.loadRegisterPage = function(selector){
