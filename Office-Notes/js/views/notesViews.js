@@ -75,15 +75,16 @@ app.notesViews = (function(){
 	};
 
 	function showAddNotePage(selector, data){
-		$.get('templates/deleteNote.html', function(templ){
-			var rendered = Mustache.render(templ, data);
-			$(selector).html(rendered)
+		$.get('templates/addNote.html', function(templ){
+			$(selector).html(templ)
 		}).then(function(){
-			$('#deleteNoteButton').on('click', function(e){
-				var	id = $(this).parent().attr('data-id');
+			$('#addNoteButton').on('click', function(e){
+				var title = $('#title').val(),
+					text = $('#text').val(),
+					deadline = $('#deadline').val();
 				
 				Sammy(function() {
-					this.trigger('deleteNote', {_id:id});
+					this.trigger('addNote', {title:title, text: text, deadline: deadline});
 				});
 			});
 		}).done();

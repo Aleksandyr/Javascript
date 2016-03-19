@@ -65,6 +65,10 @@ var app = app || {};
 			notesController.loadMyNotes(selector);
 		});
 
+		this.get('#/addNote/', function(e) {
+			notesController.loadAddNotePage(selector);
+		});
+
 		// Triggers
 		this.bind('redirectUrl', function(e, data) {
 			this.redirect(data.url);
@@ -91,7 +95,11 @@ var app = app || {};
 		});
 
 		this.bind('deleteNote', function(e, data) {
-			notesController.deleteNote(data._id);
+			notesController.deleteNote(data);
+		});
+
+		this.bind('addNote', function(e, data) {
+			notesController.addNote(data);
 		});
 	});
 

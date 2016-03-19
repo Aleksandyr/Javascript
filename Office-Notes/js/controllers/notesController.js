@@ -61,7 +61,7 @@ app.notesController = (function(){
 	};
 
 	NotesController.prototype.editNote = function(data){
-		var username = sessionStorage['username'];
+		data.author = sessionStorage['username'];
 		this._notesModel.editNote(data._id, data).
 			then(function(successData){
 				window.location.reload();
@@ -76,6 +76,20 @@ app.notesController = (function(){
 		this._notesModel.deleteNote(data._id).
 			then(function(successData){
 				window.location.reload();
+			});
+	};
+
+	NotesController.prototype.loadAddNotePage = function(selector){
+		this._notesViewBag.showAddNotePage(selector);
+	};
+
+	NotesController.prototype.addNote = function(data){
+		data.author = sessionStorage['username'];
+		this._notesModel.addNote(data).
+			then(function(successData){
+				Sammy(function(){
+					this.trigger('redirectUrl', {url: '#/myNotes/'})
+				})
 			});
 	};
 
