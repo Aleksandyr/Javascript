@@ -8,12 +8,16 @@ var app = app || {};
 		var requester = app.requester.config('kid_WyMOhIZnkZ', 'f8449c10b1dc4cee99963e75092d2cc4', 'https://baas.kinvey.com/');
 		
 		var userModel = app.userModel.load(requester);
+		var notesModel = app.notesModel.load(requester);
 
 		var userViewBag = app.userViews.load();
-		var homeViewBag = app.homeViews.load();	
+		var homeViewBag = app.homeViews.load();
+		var notesViewBag = app.notesViews.load();	
 		
-		var userController = app.userController.load(userViewBag, userModel);
 		var homeController = app.homeController.load(homeViewBag);
+		var userController = app.userController.load(userViewBag, userModel);
+		var notesController = app.notesController.load(notesViewBag, notesModel);
+
 
 		// Before
 		this.before({except:{path:'#\/(login\/|register\/)?'}}, function() {
@@ -53,6 +57,14 @@ var app = app || {};
 			userController.logout();
 		});
 
+		this.get('#/office/', function(){
+			notesController.loadNotesForToday(selector);
+		});
+
+		this.get('#/myNotes/', function(){
+			notesController.loadMyNotes(selector);
+		});
+
 		// Triggers
 		this.bind('redirectUrl', function(e, data) {
 			this.redirect(data.url);
@@ -64,6 +76,22 @@ var app = app || {};
 
 		this.bind('register', function(e, data) {
 			userController.register(data);
+		});
+
+		this.bind('showEditNote', function(e, data) {
+			notesController.loadEditNote(selector, data);
+		});
+
+		this.bind('editNote', function(e, data) {
+			notesController.editNote(data);
+		});
+
+		this.bind('showDeleteNote', function(e, data) {
+			notesController.loadDeleteNote(selector, data);
+		});
+
+		this.bind('deleteNote', function(e, data) {
+			notesController.deleteNote(data._id);
 		});
 	});
 
