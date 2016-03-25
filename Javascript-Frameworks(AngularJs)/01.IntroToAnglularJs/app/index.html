@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="listStudentPage">
 <head>
 	<title>Intro to AngularJs</title>
 	<script type="text/javascript" src="libs/angular/angular.js"></script>
 </head>
-<body>
-	<h1>Hello world!</h1>
+<body ng-controller="studentsController">
+	<table border="1">
+		<tr>
+			<th>Name</th>
+			<th>Photo</th>
+			<th>grade</th>
+			<th>school</th>
+			<th>teacher</th>
+		</tr>
+		<tr ng-repeat="student in students">
+			<td>{{student.name}}</td>
+			<td><img ng-src="{{student.photo}}" alt="No Photo"></td>
+			<td>{{student.grade}}</td>
+			<td>{{student.school}}</td>
+			<td>{{student.teacher}}</td>
+		</tr>
+	</table>
 </body>
+<script type="text/javascript" src="js/app.js"></script>
+
+<script type="text/javascript" src="js/controllers/studentsController.js"></script>
 </html>
