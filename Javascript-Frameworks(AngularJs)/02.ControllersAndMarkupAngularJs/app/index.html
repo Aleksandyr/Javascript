@@ -2,11 +2,172 @@
 <html>
 <head>
 	<title>Controllers and markup</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	<style>
+		img {
+			max-height: 100px;
+		}
+	</style>
+	
 	<script type="text/javascript" src="libs/angular/angular.js"></script>
+	<script type="text/javascript" src="libs/jquery.js"></script>
+	<script type="text/javascript" src="libs/bootstrap.js"></script>
+
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/services.js"></script>
+
 </head>
-<body>
+<body data-ng-app="VideoSystem" data-ng-controller="VideoSystemViewModel">
+	<div id="add-video-modal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">New video</h4>
+				</div>
+				<div class="modal-body">
+					<form name="addVideoForm" class="form-horizontal" data-ng-submit="submit()">
+						<fieldset>
+						
+							<div class="form-group">
+								<label for="inputTitle" class="col-lg-2 control-label">Title*</label>
+								<div class="col-lg-10">
+									<input type="text" required class="form-control"
+										id="inputTitle" placeholder="Title" name="title" data-ng-model="newVideo.title">
+									<span class="helper-block" data-ng-show="addVideoForm.title.$error.required">Title is required!</span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="inputPicture" class="col-lg-2 control-label">Picture*</label>
+								<div class="col-lg-10">
+									<input type="text" required class="form-control" id="inputPicture" placeholder="Picture"
+										name="picture" data-ng-model="newVideo.picture"
+										data-ng-pattern="/^https?://(.+?)\.(png|jpg|jpeg|gif|bmp)$/">
+									<span class="helper-block" data-ng-show="addVideoForm.picture.$error.required">Picture is required!</span>
+									<span class="helper-block" data-ng-show="addVideoForm.picture.$error.pattern">Invalid picture url!</span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="inputCategory" class="col-lg-2 control-label">Category*</label>
+								<div class="col-lg-10">
+									<input type="text" required class="form-control" id="inputCategory" placeholder="Category"
+										name="category" data-ng-model="newVideo.category">
+									<span class="helper-block" data-ng-show="addVideoForm.category.$error.required">Category is required!</span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="inputSubscribers" class="col-lg-2 control-label">Subscribers</label>
+								<div class="col-lg-10">
+									<input type="number" class="form-control" id="inputSubscribers"
+										name="subscribers" data-ng-model="newVideo.subscribers">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="inputLength" class="col-lg-2 control-label">Length</label>
+								<div class="col-lg-10">
+									<input type="text" class="form-control" id="inputLength" placeholder="Length"
+										name="length" data-ng-model="newVideo.length">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="inputDate" class="col-lg-2 control-label">Date</label>
+								<div class="col-lg-10">
+									<input type="date" class="form-control" id="inputDate"
+										name="date" data-ng-model="newVideo.date">
+									<div class="checkbox">
+									  <label>
+										<input data-ng-model="newVideo.hasSubtitles" type="checkbox"> Has subtitles
+									  </label>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-lg-10 col-lg-offset-2">
+									<button type="submit" class="btn btn-primary">Add</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="navbar navbar-fixed navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle sysbar</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a data-toggle="modal" data-target="#add-video-modal" href="#">Add video</a></li>
+				</ul>
+				<form class="navbar-form navbar-left">
+					<label class="control-label" for="orderSelection">Order by:</label>
+					<select class="form-control" id="orderSelection" data-ng-init="orderPredicate='title'" data-ng-model="orderPredicate">
+						<option selected value="title">Title</option>
+						<option value="length">Length</option>
+						<option value="date">Date</option>
+						<option value="likes">Likes</option>
+					</select>
+					<label class="control-label" for="orderCheck">Desc</label>
+					<input type="checkbox" id="orderCheck" data-ng-model="orderByDesc" />
+				</form>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" id="inputText" placeholder="Search by category" data-ng-model="search.category" />
+					<input type="date" class="form-control" id="inputDate" data-ng-model="dateSearch" />
+					<label class="control-label" for="subtitlesCheck">Subtitles</label>
+					<input type="checkbox" id="subtitlesCheck" data-ng-true-value="true" data-ng-false-value="undefined" data-ng-model="search.haveSubtitles" />
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<main class="container" data-ng-controller="VideosViewModel">
+		<div class="row">
+			<article data-ng-repeat="video in videos | orderBy:orderPredicate:orderByDesc | filter:dateFilter | filter:search" class="col-md-12">
+				<div class="well text-center">
+					<h1>{{video.title}}</h1>
+					<img class="img-responsive center-block" data-ng-src="{{video.pictureUrl}}" />
+					<p>Length: {{video.length}}</p>
+					<p>Category: {{video.category}}</p>
+					<p>Subscribers: {{video.subscribers}}</p>
+					<p>Date: {{video.date.toLocaleString}}</p>
+					<p>Have subtitles: {{video.haveSubtitles}}</p>
+					<p>Likes: {{video.likes}}</p>
 
-<script type="text/javascript" src="js/app.js"></script>
-
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">Comments</h3>
+						</div>
+						<div class="panel-body">
+							<ul class="list-group">
+								<li class="list-group-item" data-ng-repeat="comment in video.comments">
+									<p class="text-info">
+										Posted by: {{comment.username}} |
+										Date Posted: {{comment.date.toLocaleString()}} | Website: <a href="{{comments.websiteUrl}}">{{comment.websiteUrl}}</a>
+									</p>
+									<p class="text-success">{{comment.content}}</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+	</main>
 </body>
 </html>
